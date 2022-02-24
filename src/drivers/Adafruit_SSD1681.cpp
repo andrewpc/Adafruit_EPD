@@ -106,6 +106,7 @@ Adafruit_SSD1681::Adafruit_SSD1681(int width, int height, int8_t DC, int8_t RST,
 void Adafruit_SSD1681::busy_wait(void) {
   if (_busy_pin >= 0) {
     while (digitalRead(_busy_pin)) { // wait for busy low
+      Serial.println("in busy_wait loop");
       delay(10);
     }
   } else {
