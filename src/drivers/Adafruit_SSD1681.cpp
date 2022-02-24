@@ -141,11 +141,11 @@ void Adafruit_SSD1681::update() {
    Serial.println("after update -x22");
   EPD_command(SSD1681_MASTER_ACTIVATE);
   Serial.println("after update x20");
-  busy_wait();
+  //busy_wait();
 
-  if (_busy_pin <= -1) {
+  //if (_busy_pin <= -1) {
     delay(1000);
-  }
+  //}
 }
 
 /**************************************************************************/
