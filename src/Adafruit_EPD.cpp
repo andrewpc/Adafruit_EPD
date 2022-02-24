@@ -351,28 +351,28 @@ void Adafruit_EPD::writeSRAMFramebufferToEPD(uint16_t SRAM_buffer_addr,
 */
 /**************************************************************************/
 void Adafruit_EPD::display(bool sleep) {
-#ifdef EPD_DEBUG
+
   Serial.println("  Powering Up");
-#endif
+
 
   powerUp();
 
-#ifdef EPD_DEBUG
+
   Serial.println("  Set RAM address");
-#endif
+
 
   // Set X & Y ram counters
   setRAMAddress(0, 0);
 
   if (use_sram) {
-#ifdef EPD_DEBUG
+
     Serial.println("  Write SRAM buff to EPD");
-#endif
+
     writeSRAMFramebufferToEPD(buffer1_addr, buffer1_size, 0);
   } else {
-#ifdef EPD_DEBUG
+
     Serial.println("  Write RAM buff to EPD");
-#endif
+
     writeRAMFramebufferToEPD(buffer1, buffer1_size, 0);
   }
 
@@ -390,16 +390,15 @@ void Adafruit_EPD::display(bool sleep) {
     }
   }
 
-#ifdef EPD_DEBUG
   Serial.println("  Update");
-#endif
+
   update();
   partialsSinceLastFullUpdate = 0;
 
   if (sleep) {
-#ifdef EPD_DEBUG
+
     Serial.println("  Powering Down");
-#endif
+
     powerDown();
   }
 }
