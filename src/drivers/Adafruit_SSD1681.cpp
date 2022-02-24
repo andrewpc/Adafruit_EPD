@@ -133,12 +133,13 @@ void Adafruit_SSD1681::begin(bool reset) {
 /**************************************************************************/
 void Adafruit_SSD1681::update() {
   uint8_t buf[1];
-
+  Serial.println("in 1681 update");
   // display update sequence
   buf[0] = 0xF7;
   EPD_command(SSD1681_DISP_CTRL2, buf, 1);
-
+   Serial.println("after update -x22");
   EPD_command(SSD1681_MASTER_ACTIVATE);
+  Serial.println("after update x20");
   busy_wait();
 
   if (_busy_pin <= -1) {

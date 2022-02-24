@@ -158,7 +158,7 @@ void Adafruit_EPD::begin(bool reset) {
     sram.write8(0, K640_SEQUENTIAL_MODE, MCPSRAM_WRSR);
   }
 
-  // Serial.println("set pins");
+   Serial.println("set pins");
   // set pin directions
   pinMode(_dc_pin, OUTPUT);
   pinMode(_cs_pin, OUTPUT);
@@ -176,16 +176,16 @@ void Adafruit_EPD::begin(bool reset) {
     return;
   }
 
-  // Serial.println("hard reset");
+   Serial.println("hard reset");
   if (reset) {
     hardwareReset();
   }
 
-  // Serial.println("busy");
+   Serial.println("busy");
   if (_busy_pin >= 0) {
     pinMode(_busy_pin, INPUT);
   }
-  // Serial.println("done!");
+   Serial.println("done!");
 }
 
 /**************************************************************************/
@@ -351,28 +351,28 @@ void Adafruit_EPD::writeSRAMFramebufferToEPD(uint16_t SRAM_buffer_addr,
 */
 /**************************************************************************/
 void Adafruit_EPD::display(bool sleep) {
-
+#ifdef EPD_DEBUG
   Serial.println("  Powering Up");
-
+#endif
 
   powerUp();
 
-
+#ifdef EPD_DEBUG
   Serial.println("  Set RAM address");
-
+#endif
 
   // Set X & Y ram counters
   setRAMAddress(0, 0);
 
   if (use_sram) {
-
+#ifdef EPD_DEBUG
     Serial.println("  Write SRAM buff to EPD");
-
+#endif
     writeSRAMFramebufferToEPD(buffer1_addr, buffer1_size, 0);
   } else {
-
+#ifdef EPD_DEBUG
     Serial.println("  Write RAM buff to EPD");
-
+#endif
     writeRAMFramebufferToEPD(buffer1, buffer1_size, 0);
   }
 
@@ -390,15 +390,16 @@ void Adafruit_EPD::display(bool sleep) {
     }
   }
 
+#ifdef EPD_DEBUG
   Serial.println("  Update");
-
+#endif
   update();
   partialsSinceLastFullUpdate = 0;
 
   if (sleep) {
-
+#ifdef EPD_DEBUG
     Serial.println("  Powering Down");
-
+#endif
     powerDown();
   }
 }
