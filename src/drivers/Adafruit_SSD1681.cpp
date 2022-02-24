@@ -161,11 +161,11 @@ void Adafruit_SSD1681::updatePartial(void) {
   EPD_command(SSD1681_DISP_CTRL2, buf, 1);
 
   EPD_command(SSD1681_MASTER_ACTIVATE);
-  busy_wait();
+  //busy_wait();
 
-  if (_busy_pin <= -1) {
+  //if (_busy_pin <= -1) {
     delay(1000);
-  }
+  //}
 }
 
 void Adafruit_SSD1681::displayPartial(uint16_t x1, uint16_t y1, uint16_t x2,
