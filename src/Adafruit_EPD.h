@@ -78,7 +78,7 @@ public:
   void setBlackBuffer(int8_t index, bool inverted);
   void setColorBuffer(int8_t index, bool inverted);
   void display(bool sleep = false);
-  void setBuffer1(uint8_t *buffer){buffer1 = buffer};
+  void setBuffer1(uint8_t *buffer){buffer1 = buffer;};
 
   thinkinkmode_t getMode(void) { return inkmode; }
 
