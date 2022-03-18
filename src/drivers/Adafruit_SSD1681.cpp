@@ -107,7 +107,7 @@ void Adafruit_SSD1681::busy_wait(void) {
   if (_busy_pin >= 0) {
     while (digitalRead(_busy_pin)) { // wait for busy low
       //Serial.println("in busy_wait loop");
-      delay(1);
+      yield();
     }
   } else {
     delay(BUSY_WAIT);
