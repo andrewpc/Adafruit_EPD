@@ -105,9 +105,14 @@ Adafruit_SSD1681::Adafruit_SSD1681(int width, int height, int8_t DC, int8_t RST,
 /**************************************************************************/
 void Adafruit_SSD1681::busy_wait(void) {
   if (_busy_pin >= 0) {
+    const uint32_t now = millis();
     while (digitalRead(_busy_pin)) { // wait for busy low
       //Serial.println("in busy_wait loop");
-      yield();
+      delay(10);
+      if (millis() - now > 1000) {
+        ESP_LOGD(TAG, "Busy timeout - aborting");
+        return {};
+      }
     }
   } else {
     delay(BUSY_WAIT);
