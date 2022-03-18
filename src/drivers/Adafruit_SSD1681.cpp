@@ -111,7 +111,7 @@ void Adafruit_SSD1681::busy_wait(void) {
       delay(10);
       if (millis() - now > 1000) {
         ESP_LOGD(TAG, "Busy timeout - aborting");
-        return {};
+        return;
       }
     }
   } else {
